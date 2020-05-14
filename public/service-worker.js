@@ -3,6 +3,7 @@ var FILES_TO_CASHE = [
   '/',
   '/styles.css',
   '/index.js',
+  '/db.js',
   '/manifest.json',
   '/favicon.ico',
   '/icons/icon-192x192.png',
