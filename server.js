@@ -7,8 +7,8 @@ const connectDB = require("./config/connectDB.js");
 
 //Bring in models
 const db = require("./models");
-const PORT = process.event.PORT || 3000;
 const app = express();
+const PORT = process.event.PORT || 3000;
 
 app.use(compression());
 app.use(express.urlencoded({ extended: true }));
