@@ -62,6 +62,8 @@ app.post("/api/transaction/bulk", (req, res) => {
     formattedData.push(budget);
   });
 
+  console.log(formattedData);
+  
   db.Transaction.insertMany(formattedData)
     .then(data => {
       console.log(data.result.n + " records inserted!");
