@@ -52,27 +52,15 @@ app.post("/api/transaction", (req, res) => {
 
 app.post("/api/transaction/bulk", (req, res) => {
   let data = req.body;
-  let formattedData = [];
 
-  data.forEach(data => {
-    let budget = {};
-    budget.date = data.date;
-    budget.name = data.name,
-      budget.value = data.value;
-    formattedData.push(budget);
-  });
-
-  console.log(formattedData);
-  
-  db.Transaction.insertMany(formattedData)
-    .then(data => {
-      console.log(data.result.n + " records inserted!");
-      process.exit(0);
+  db.Transaction.collection.insertMany(data)
+    .then(dbUpdate => {
+      res.json(dbUpdate);
     })
     .catch(err => {
-      console.error(err);
-      process.exit(1);
+      res.json(err);
     });
+
 });
 
 
