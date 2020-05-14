@@ -36,7 +36,7 @@ app.get("/api/transaction", (req, res) => {
 
 app.post("/api/transaction", (req, res) => {
   let data = req.body;
-  console.log(data);
+  // console.log(data);
 
   db.Transaction.create({
     date: data.date,
@@ -53,16 +53,15 @@ app.post("/api/transaction", (req, res) => {
 app.post("/api/transaction/bulk", (req, res) => {
   let data = req.body;
   console.log(data);
-
-  db.Transaction.create({
-    date: data.date,
-    name: data.name,
-    value: data.value
-  }).then(dbUpdate => {
-    res.json(dbUpdate);
-  })
+  console.log("Hi");
+  db.Transaction.insertMany(data)
+    .then(data => {
+      console.log(data.result.n + " records inserted!");
+      process.exit(0);
+    })
     .catch(err => {
-      res.json(err);
+      console.error(err);
+      process.exit(1);
     });
 });
 
